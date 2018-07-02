@@ -11,20 +11,21 @@ class User < ApplicationRecord
   #custom field
   rails_admin do
 
-    # list do #user list fix list
-    #   field :id
-    #   field :first_name
-    #   field :last_name
-    #   field :email
-    # end
+    list do #user list fix list
+      field :id
+      field :first_name
+      field :last_name
+      field :email
+    end
 
-    # edit do # edit and new user
-    #   field :first_name
-    #   field :last_name
-    #   field :email
-    #   field :password
-    #   field :password_confirmation
-    # end
+    edit do # edit and new user
+      field :first_name
+      field :last_name
+      field :email
+      field :password
+      field :password_confirmation
+      field :organization
+    end
 
   end
 
