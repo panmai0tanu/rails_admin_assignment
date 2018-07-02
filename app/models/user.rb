@@ -8,13 +8,16 @@ class User < ApplicationRecord
   has_many :projects , :through => :user_projects
   belongs_to :organization
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   #custom field
   rails_admin do
 
     list do #user list fix list
       field :id
       field :first_name
-      field :last_name
+      field :last_name 
       field :email
     end
 
