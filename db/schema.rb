@@ -10,33 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180629081506) do
+ActiveRecord::Schema.define(version: 20180702073410) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "project_id"
-    t.index ["project_id"], name: "index_organizations_on_project_id"
-    t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "user_project_id"
-    t.index ["user_id"], name: "index_projects_on_user_id"
-    t.index ["user_project_id"], name: "index_projects_on_user_project_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_projects_on_organization_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
-    t.string "user_id"
-    t.string "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.integer "user_id"
+    t.index ["project_id"], name: "index_user_projects_on_project_id"
+    t.index ["user_id"], name: "index_user_projects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,10 +50,10 @@ ActiveRecord::Schema.define(version: 20180629081506) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_project_id"
+    t.integer "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_project_id"], name: "index_users_on_user_project_id"
   end
 
 end

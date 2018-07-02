@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
-	belongs_to :user
-	belongs_to :project
+	has_many :users
+	has_many :projects
+
 end
+
